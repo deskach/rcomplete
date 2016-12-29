@@ -4,6 +4,7 @@
 var Header = React.createClass({
   getDefaultProps: function () {
     return {
+      name: "React",
       message: 'This is from the component.',
     }
   },
@@ -28,10 +29,11 @@ var NameInput = React.createClass({
     e.preventDefault();
 
     const name = this.refs.name.value;
+    const message = this.refs.message.value;
 
     if (name) {
       this.refs.name.value = "";
-      this.props.onNewName(name);
+      this.props.onNewName(name, message);
     }
   },
 
@@ -45,7 +47,10 @@ var NameInput = React.createClass({
         <div style={style}>
           <form onSubmit={this.onFormSubmit}>
             <input type="text" ref="name"/>
-            <button>Set Name</button>
+            <br/>
+            <textarea ref="message"/>
+            <br/>
+            <button>Submit</button>
           </form>
         </div>
     );
@@ -54,19 +59,19 @@ var NameInput = React.createClass({
 
 var Greeter = React.createClass({
   getInitialState: function () {
-    return {name: 'React'};
+    return { name: 'React', message: "Some text" };
   },
 
-  onNewName: function (name) {
+  onNewName: function (name, message) {
     if (name) {
-      this.setState({ name });
+      this.setState({ name, message });
     }
   },
 
   render: function () {
     return (
         <div>
-          <Header name={this.state.name} message="test message"/>
+          <Header name={this.state.name} message={this.state.message}/>
           <NameInput onNewName={this.onNewName}/>
         </div>
     );
