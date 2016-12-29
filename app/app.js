@@ -30,11 +30,18 @@ var NameInput = React.createClass({
 
     const name = this.refs.name.value;
     const message = this.refs.message.value;
+    let updates = {};
 
     if (name) {
       this.refs.name.value = "";
-      this.props.onNewName(name, message);
+      updates.name = name;
     }
+    if (message) {
+      this.refs.message.value = "";
+      updates.message = message;
+    }
+
+    this.props.onNewName(updates);
   },
 
   render: function () {
@@ -62,10 +69,8 @@ var Greeter = React.createClass({
     return { name: 'React', message: "Some text" };
   },
 
-  onNewName: function (name, message) {
-    if (name) {
-      this.setState({ name, message });
-    }
+  onNewName: function (updates) {
+    this.setState(updates);
   },
 
   render: function () {
