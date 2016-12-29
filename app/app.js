@@ -1,16 +1,23 @@
 /**
  * Created by deskach on 29/12/16.
  */
-class Greeter extends React.Component{
-  render() {
+var Greeter = React.createClass({
+  getDefaultProps: function () {
+    return {
+      name: 'React',
+      message: 'This is from the component.',
+    }
+  },
+
+  render: function () {
     return (
         <div>
-          <h1>Hello React!</h1>
-          <p>This is from the component.</p>
+          <h1>Hello {this.props.name}!</h1>
+          <p>{this.props.message}</p>
         </div>
     );
   }
-}
+});
 
-ReactDOM.render(<Greeter/>, document.getElementById('app'));
+ReactDOM.render(<Greeter />, document.getElementById('app'));
 
