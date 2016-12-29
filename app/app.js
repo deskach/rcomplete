@@ -31,7 +31,7 @@ var NameInput = React.createClass({
 
     if (name) {
       this.refs.name.value = "";
-      this.props.onFormSubmit(name);
+      this.props.onNewName(name);
     }
   },
 
@@ -57,7 +57,7 @@ var Greeter = React.createClass({
     return {name: 'React'};
   },
 
-  onFormSubmit: function (name) {
+  onNewName: function (name) {
     if (name) {
       this.setState({ name });
     }
@@ -66,8 +66,8 @@ var Greeter = React.createClass({
   render: function () {
     return (
         <div>
-          <Header name={this.state.name}/>
-          <NameInput onFormSubmit={this.onFormSubmit}/>
+          <Header name={this.state.name} message="test message"/>
+          <NameInput onNewName={this.onNewName}/>
         </div>
     );
   }
