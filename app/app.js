@@ -17,7 +17,12 @@ var Greeter = React.createClass({
   onFormSubmit: function (e) {
     e.preventDefault();
 
-    this.setState({name: this.refs.name.value});
+    const name = this.refs.name.value;
+
+    if(name) {
+      this.refs.name.value = "";
+      this.setState({name});
+    }
   },
 
   render: function () {
