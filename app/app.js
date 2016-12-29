@@ -41,7 +41,7 @@ var NameInput = React.createClass({
       updates.message = message;
     }
 
-    this.props.onNewName(updates);
+    this.props.onNewData(updates);
   },
 
   render: function () {
@@ -69,7 +69,7 @@ var Greeter = React.createClass({
     return { name: 'React', message: "Some text" };
   },
 
-  onNewName: function (updates) {
+  onNewData: function (updates) {
     this.setState(updates);
   },
 
@@ -77,7 +77,7 @@ var Greeter = React.createClass({
     return (
         <div>
           <Header name={this.state.name} message={this.state.message}/>
-          <NameInput onNewName={this.onNewName}/>
+          <NameInput onNewData={this.onNewData}/>
         </div>
     );
   }
